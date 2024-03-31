@@ -5,7 +5,7 @@
 vector createVector(size_t n) {
     vector vector;
     vector.data = NULL;
-    vector.size = n;
+    vector.size = 0;
     vector.capacity = n;
 
     vector.data = (int*) malloc(n * sizeof(int));
@@ -26,7 +26,7 @@ void reserve(vector *v, size_t newCapacity) {
         v->capacity = 0;
     }
     else if (newCapacity > v->capacity) {
-        v->data = (int*) realloc(v, newCapacity * sizeof(int));
+        v->data = (int*) realloc(v->data, newCapacity * sizeof(int));
 
         if (v->data == NULL) {
             fprintf(stderr, "bad alloc");
@@ -60,7 +60,7 @@ bool isEmpty(vector *v) {
 }
 
 bool isFull(vector *v) {
-    return v->size == v->capacity;
+    return v->size == v->capacity && v->size != 0;
 }
 
 int getVectorValue(vector *v, size_t i) {
