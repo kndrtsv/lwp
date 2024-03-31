@@ -6,7 +6,7 @@
 vectorVoid createVectorV(size_t n, size_t baseTypeSize) {
     vectorVoid vectorVoid;
     vectorVoid.data = NULL;
-    vectorVoid.size = n;
+    vectorVoid.size = 0;
     vectorVoid.capacity = n;
     vectorVoid.baseTypeSize = baseTypeSize;
 
@@ -29,7 +29,7 @@ void reserveV(vectorVoid *v, size_t newCapacity) {
         v->baseTypeSize = 0;
     }
     else if (newCapacity > v->capacity) {
-        v->data = (int*) realloc(v, newCapacity * v->baseTypeSize);
+        v->data = (int*) realloc(v->data, newCapacity * v->baseTypeSize);
 
         if (v->data == NULL) {
             fprintf(stderr, "bad alloc");
