@@ -89,7 +89,7 @@ void popBack(vector *v) {
 }
 
 int* atVector(vector *v, size_t index) {
-    if (v->size < index) {
+    if (v->size <= index) {
         fprintf(stderr, "IndexError: a[%u] is not exists", index);
         exit(1);
     }
