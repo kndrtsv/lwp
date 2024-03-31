@@ -5,4 +5,6 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(lwbop main.c
         libs/data_structures/vector/vector.c
-        libs/data_structures/vector/vector.h)
+        libs/data_structures/vector/vector.h
+        libs/data_structures/vector/voidVector.h
+        libs/data_structures/vector/voidVector.c)
