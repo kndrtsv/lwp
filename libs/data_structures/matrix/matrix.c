@@ -1,6 +1,7 @@
 #include <malloc.h>
 #include <stdio.h>
 #include <assert.h>
+#include <memory.h>
 #include "matrix.h"
 
 matrix getMemMatrix(int nRows, int nCols) {
@@ -118,4 +119,42 @@ void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int*, int)) 
         swap(&mc[i], &mc[min_pos]);
         swapColumns(m, i, min_pos);
     }
+}
+
+bool isSquareMatrix(matrix *m) {
+    return m->nRows == m->nCols;
+}
+
+bool areTwoMatricesEqual(matrix *m1, matrix *m2) {
+    if (m1->nRows != m2->nRows || m1->nCols != m2->nCols)
+        return 0;
+
+    for (int i = 0; i < m1->nRows; i++)
+        if (memcmp(m1->values[i], m2->values[i], sizeof(int) * m1->nCols) != 0)
+            return 0;
+
+    return 1;
+}
+
+bool isEMatrix(matrix *m) {
+    if (!isSquareMatrix(m))
+        return 0;
+
+    for (int i = 0; i < m->nRows; i++)
+        if (m->values[i][i] != 1 || getSum(m->values[i], m->nCols) > 1)
+            return 0;
+
+    return 1;
+}
+
+bool isSymmetricMatrix(matrix *m) {
+    if (!isSquareMatrix(m))
+        return 0;
+
+    for (int i = 1; i < m->nRows; i++)
+        for (int j = 0; j < i; j++)
+            if (m->values[i][j] != m->values[j][i])
+                return 0;
+
+    return 1;
 }

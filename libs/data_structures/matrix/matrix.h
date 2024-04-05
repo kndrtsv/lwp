@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 #ifndef LWBOP_MATRIX_H
 #define LWBOP_MATRIX_H
 
@@ -36,6 +38,14 @@ void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int*, int));
 
 void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int*, int));
 
-        int getSum(int *a, int n);
+int getSum(int *a, int n);
+
+bool isSquareMatrix(matrix *m);
+
+bool areTwoMatricesEqual(matrix *m1, matrix *m2);
+
+bool isEMatrix(matrix *m);
+
+bool isSymmetricMatrix(matrix *m);
 
 #endif //LWBOP_MATRIX_H
