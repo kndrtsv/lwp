@@ -69,3 +69,53 @@ void swapColumns(matrix m, int j1, int j2) {
         m.values[i][j2] = temp;
     }
 }
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int getSum(int *a, int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+        sum += a[i];
+
+    return sum;
+}
+
+void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int*, int)) {
+    int *mc = (int*) malloc(sizeof(int) * m.nRows);
+    for (int i = 0; i < m.nRows; i++)
+        mc[i] = criteria(m.values[i], m.nCols);
+
+    for (int i = 1; i < m.nRows; i++) {
+        int temp = mc[i];
+        int j = i;
+        while (j > 0 && mc[j - 1] > temp) {
+            mc[j] = mc[j - 1];
+            swapRows(m, j, j - 1);
+            j--;
+        }
+        mc[j] = temp;
+    }
+}
+
+void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int*, int)) {
+    int *mc = (int *) malloc(sizeof(int) * m.nCols);
+    int *column = (int *) malloc(sizeof(int) * m.nRows);
+    for (int i = 0; i < m.nCols; i++) {
+        for (int j = 0; j < m.nRows; j++)
+            column[j] = m.values[j][i];
+        mc[i] = criteria(column, m.nRows);
+    }
+
+    for (int i = 0; i < m.nCols - 1; i++) {
+        int min_pos = i;
+        for (int j = i + 1; j < m.nCols; j++)
+            if (mc[j] < mc[min_pos])
+                min_pos = j;
+        swap(&mc[i], &mc[min_pos]);
+        swapColumns(m, i, min_pos);
+    }
+}

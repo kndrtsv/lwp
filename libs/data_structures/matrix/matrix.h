@@ -32,4 +32,10 @@ void swapRows(matrix m, int i1, int i2);
 
 void swapColumns(matrix m, int j1, int j2);
 
+void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int*, int));
+
+void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int*, int));
+
+        int getSum(int *a, int n);
+
 #endif //LWBOP_MATRIX_H
