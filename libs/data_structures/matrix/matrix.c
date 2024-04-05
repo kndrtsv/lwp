@@ -171,3 +171,35 @@ void transposeMatrix(matrix *m) {
         for (int j = 1; j < m->nCols; j++)
             swap(&m->values[i][j], &m->values[j][i]);
 }
+
+position getMinValuePos(matrix m) {
+    int row_i = 0;
+    int col_i = 0;
+    int min_elem = m.values[0][0];
+
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; j++)
+            if (m.values[i][j] < min_elem) {
+                min_elem = m.values[i][j];
+                row_i = i;
+                col_i = j;
+            }
+
+    return (position) {row_i, col_i};
+}
+
+position getMaxValuePos(matrix m) {
+    int row_i = 0;
+    int col_i = 0;
+    int max_elem = m.values[0][0];
+
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; j++)
+            if (m.values[i][j] > max_elem) {
+                max_elem = m.values[i][j];
+                row_i = i;
+                col_i = j;
+            }
+
+    return (position) {row_i, col_i};
+}
