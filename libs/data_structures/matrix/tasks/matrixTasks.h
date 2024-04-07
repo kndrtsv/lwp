@@ -9,4 +9,8 @@ void t2_sortRowsNotDecreasingMaxElem(matrix a);
 
 void t3_sortColsNotDecreasingMinElem(matrix a);
 
+void getSquareOfMatrixIfSymmetric(matrix *a);
+
+matrix mulMatrices(matrix a1, matrix a2);
+
 #endif //LWBOP_MATRIXTASKS_H

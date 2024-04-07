@@ -1,4 +1,5 @@
 #include <malloc.h>
+#include <assert.h>
 #include "matrixTasks.h"
 
 void t1_swapRows(matrix a) {
@@ -31,4 +32,23 @@ int getMin(int *a, int n) {
 
 void t3_sortColsNotDecreasingMinElem(matrix a) {
     selectionSortColsMatrixByColCriteria(a, &getMin);
+}
+
+matrix mulMatrices(matrix a1, matrix a2) {
+    assert(a1.nCols == a2.nRows);
+    matrix b = getMemMatrix(a1.nRows, a2.nCols);
+    for (int i = 0; i < a1.nRows; i++)
+        for (int j = 0; j < a2.nCols; j++) {
+            b.values[i][j] = 0;
+            for (int k = 0; k < a1.nRows; k++)
+                b.values[i][j] += a1.values[i][k] * a2.values[k][j];
+        }
+
+    return b;
+}
+
+void getSquareOfMatrixIfSymmetric(matrix *a) {
+    if (isSymmetricMatrix(a) && isSquareMatrix(a))
+        freeMemMatrix(a);
+        *a = mulMatrices(*a,*a);
 }
