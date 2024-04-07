@@ -5,4 +5,6 @@
 
 void t1_swapRows(matrix a);
 
+void t2_sortRowsNotDecreasingMaxElem(matrix a);
+
 #endif //LWBOP_MATRIXTASKS_H
