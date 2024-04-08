@@ -2,10 +2,10 @@
 #include <assert.h>
 #include "matrixTasks.h"
 
-void t1_swapRows(matrix a) {
-    int max_i = getMaxValuePos(a).rowIndex;
-    int min_i = getMinValuePos(a).rowIndex;
-    swapRows(a, max_i, min_i);
+void t1_swapRows(matrix m) {
+    int max_i = getMaxValuePos(m).rowIndex;
+    int min_i = getMinValuePos(m).rowIndex;
+    swapRows(m, max_i, min_i);
 }
 
 int getMax(int *a, int n) {
@@ -17,8 +17,8 @@ int getMax(int *a, int n) {
     return max_elem;
 }
 
-void t2_sortRowsNotDecreasingMaxElem(matrix a) {
-    insertionSortRowsMatrixByRowCriteria(a, &getMax);
+void t2_sortRowsNotDecreasingMaxElem(matrix m) {
+    insertionSortRowsMatrixByRowCriteria(m, &getMax);
 }
 
 int getMin(int *a, int n) {
@@ -30,27 +30,27 @@ int getMin(int *a, int n) {
     return min_elem;
 }
 
-void t3_sortColsNotDecreasingMinElem(matrix a) {
-    selectionSortColsMatrixByColCriteria(a, &getMin);
+void t3_sortColsNotDecreasingMinElem(matrix m) {
+    selectionSortColsMatrixByColCriteria(m, &getMin);
 }
 
-matrix mulMatrices(matrix a1, matrix a2) {
-    assert(a1.nCols == a2.nRows);
-    matrix b = getMemMatrix(a1.nRows, a2.nCols);
-    for (int i = 0; i < a1.nRows; i++)
-        for (int j = 0; j < a2.nCols; j++) {
+matrix mulMatrices(matrix m1, matrix m2) {
+    assert(m1.nCols == m2.nRows);
+    matrix b = getMemMatrix(m1.nRows, m2.nCols);
+    for (int i = 0; i < m1.nRows; i++)
+        for (int j = 0; j < m2.nCols; j++) {
             b.values[i][j] = 0;
-            for (int k = 0; k < a1.nRows; k++)
-                b.values[i][j] += a1.values[i][k] * a2.values[k][j];
+            for (int k = 0; k < m1.nRows; k++)
+                b.values[i][j] += m1.values[i][k] * m2.values[k][j];
         }
 
     return b;
 }
 
-void getSquareOfMatrixIfSymmetric(matrix *a) {
-    if (isSymmetricMatrix(a) && isSquareMatrix(a))
-        freeMemMatrix(a);
-        *a = mulMatrices(*a,*a);
+void getSquareOfMatrixIfSymmetric(matrix *m) {
+    if (isSymmetricMatrix(m) && isSquareMatrix(m))
+        freeMemMatrix(m);
+        *m = mulMatrices(*m,*m);
 }
 
 bool isUnique(long long *a, int n) {
@@ -62,11 +62,25 @@ bool isUnique(long long *a, int n) {
     return 1;
 }
 
-void transposeIfMatrixHasNotEqualSumOfRows(matrix a) {
-    long long ms[a.nRows];
-    for (int i = 0; i < a.nRows; i++)
-        ms[i] = getSum(a.values[i], a.nCols);
+void transposeIfMatrixHasNotEqualSumOfRows(matrix m) {
+    long long ms[m.nRows];
+    for (int i = 0; i < m.nRows; i++)
+        ms[i] = getSum(m.values[i], m.nCols);
 
-    if (isUnique(ms, a.nRows))
-        transposeMatrix(&a);
+    if (isUnique(ms, m.nRows))
+        transposeMatrix(&m);
+}
+
+bool isMutuallyInverseMatrices(matrix m1, matrix m2) {
+    if (!isSquareMatrix(&m1) || !isSquareMatrix(&m2))
+        return 0;
+
+    matrix m = mulMatrices(m1, m2);
+    int result = 1;
+    if (!isEMatrix(&m))
+        result = 0;
+
+    freeMemMatrix(&m);
+
+    return result;
 }
