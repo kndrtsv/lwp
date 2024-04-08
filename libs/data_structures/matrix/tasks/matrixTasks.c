@@ -52,3 +52,21 @@ void getSquareOfMatrixIfSymmetric(matrix *a) {
         freeMemMatrix(a);
         *a = mulMatrices(*a,*a);
 }
+
+bool isUnique(long long *a, int n) {
+    for (int i = 0; i < n; i++)
+        for (int j = i + 1; j < n; j++)
+            if (a[i] == a[j])
+                return 0;
+
+    return 1;
+}
+
+void transposeIfMatrixHasNotEqualSumOfRows(matrix a) {
+    long long ms[a.nRows];
+    for (int i = 0; i < a.nRows; i++)
+        ms[i] = getSum(a.values[i], a.nCols);
+
+    if (isUnique(ms, a.nRows))
+        transposeMatrix(&a);
+}

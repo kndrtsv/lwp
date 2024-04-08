@@ -13,4 +13,8 @@ void getSquareOfMatrixIfSymmetric(matrix *a);
 
 matrix mulMatrices(matrix a1, matrix a2);
 
+bool isUnique(long long *a, int n);
+
+void transposeIfMatrixHasNotEqualSumOfRows(matrix a);
+
 #endif //LWBOP_MATRIXTASKS_H
