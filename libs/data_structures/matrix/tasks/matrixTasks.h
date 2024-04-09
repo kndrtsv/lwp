@@ -25,4 +25,10 @@ long long findSumOfMaxesOfPseudoDiagonal(matrix m);
 
 int getMinInArea(matrix m);
 
+float getDistance(int *a, int n);
+
+void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int));
+
+void sortByDistances(matrix m);
+
 #endif //LWBOP_MATRIXTASKS_H

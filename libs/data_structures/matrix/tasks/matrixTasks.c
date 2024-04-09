@@ -1,5 +1,6 @@
 #include <malloc.h>
 #include <assert.h>
+#include <math.h>
 #include "matrixTasks.h"
 
 void t1_swapRows(matrix m) {
@@ -113,4 +114,33 @@ int getMinInArea(matrix m) {
                 min_elem = m.values[j][i];
 
     return min_elem;
+}
+
+float getDistance(int *a, int n) {
+    float sum_of_squares = 0;
+    for (int i = 0; i < n; i++)
+        sum_of_squares += a[i] * a[i];
+
+    return sqrt(sum_of_squares);
+}
+
+void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int)) {
+    int *mc = (float*) malloc(sizeof(int) * m.nRows);
+    for (int i = 0; i < m.nRows; i++)
+        mc[i] = criteria(m.values[i], m.nCols);
+
+    for (int i = 1; i < m.nRows; i++) {
+        float temp = mc[i];
+        int j = i;
+        while (j > 0 && mc[j - 1] > temp) {
+            mc[j] = mc[j - 1];
+            swapRows(m, j, j - 1);
+            j--;
+        }
+        mc[j] = temp;
+    }
+}
+
+void sortByDistances(matrix m) {
+    insertionSortRowsMatrixByRowCriteriaF(m, &getDistance);
 }
