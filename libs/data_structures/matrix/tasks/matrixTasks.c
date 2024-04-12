@@ -125,7 +125,7 @@ float getDistance(int *a, int n) {
 }
 
 void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int)) {
-    int *mc = (float*) malloc(sizeof(int) * m.nRows);
+    float *mc = (float*) malloc(sizeof(int) * m.nRows);
     for (int i = 0; i < m.nRows; i++)
         mc[i] = criteria(m.values[i], m.nCols);
 
@@ -143,4 +143,30 @@ void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, in
 
 void sortByDistances(matrix m) {
     insertionSortRowsMatrixByRowCriteriaF(m, &getDistance);
+}
+
+int cmp_long_long(const void *pa, const void *pb) {
+    return (*(long long*)pa - *(long long*)pb);
+}
+
+int countNUnique(long long *a, int n) {
+    if (!n)
+        return 0;
+
+    qsort(a,n, sizeof(long long),cmp_long_long);
+
+    int unique_num = 1;
+    for (int i = 0; i < n - 1; i++)
+        if (a[i] != a[i + 1])
+            unique_num++;
+
+    return unique_num;
+}
+
+int countEqClassesByRowsSum(matrix m) {
+    long long ms[m.nRows];
+    for (int i = 0; i < m.nRows; i++)
+        ms[i] = getSum(m.values[i], m.nCols);
+
+    return countNUnique(ms, m.nRows);
 }

@@ -31,4 +31,10 @@ void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, in
 
 void sortByDistances(matrix m);
 
+int cmp_long_long(const void *pa, const void *pb);
+
+int countNUnique(long long *a, int n);
+
+int countEqClassesByRowsSum(matrix m);
+
 #endif //LWBOP_MATRIXTASKS_H
