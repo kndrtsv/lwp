@@ -71,4 +71,8 @@ double getCosine(int *a, int *b, int n);
 
 int getVectorIndexWithMaxAngle(matrix m, int *b);
 
+long long getScalarProductRowAndCol(matrix m, int i, int j);
+
+long long getSpecialScalarProduct(matrix m, int n);
+
 #endif //LWBOP_MATRIXTASKS_H
