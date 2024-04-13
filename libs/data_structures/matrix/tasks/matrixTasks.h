@@ -55,6 +55,8 @@ int countZeroRows(matrix m);
 
 void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix);
 
+int getAbsMax(matrix m);
 
+void outputMatrixWithMinNorma(matrix *ms, int nMatrix);
 
 #endif //LWBOP_MATRIXTASKS_H

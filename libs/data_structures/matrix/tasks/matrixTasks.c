@@ -270,3 +270,26 @@ void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix) {
         if (countZeroRows(ms[i]) == max_zero_rows)
             outputMatrix(ms[i]);
 }
+
+int getAbsMax(matrix m) {
+    int abs_max_elem = m.values[0][0];
+
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; j++)
+            if (abs(m.values[i][j]) > abs_max_elem)
+                abs_max_elem = m.values[i][j];
+
+    return abs_max_elem;
+}
+
+void outputMatrixWithMinNorma(matrix *ms, int nMatrix) {
+    int min_norma = getAbsMax(ms[0]);
+
+    for (int i = 0; i < nMatrix; i++)
+        if (getAbsMax(ms[i]) < min_norma)
+            min_norma = getAbsMax(ms[i]);
+
+    for (int i = 0; i < nMatrix; i++)
+        if (getAbsMax(ms[i]) == min_norma)
+            outputMatrix(ms[i]);
+}
