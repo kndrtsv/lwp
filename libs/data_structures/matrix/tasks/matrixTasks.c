@@ -293,3 +293,29 @@ void outputMatrixWithMinNorma(matrix *ms, int nMatrix) {
         if (getAbsMax(ms[i]) == min_norma)
             outputMatrix(ms[i]);
 }
+
+int min2(int a, int b) {
+    return a > b ? b : a;
+}
+
+int getNSpecialElement2(matrix m) {
+    int count = 0;
+
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; j++) {
+            int is_spec = 1;
+
+            for (int k = j - 1; k >= 0; k--)
+                if (min2(m.values[i][k], m.values[i][j]) == m.values[i][j])
+                    is_spec = 0;
+
+            for (int l = j + 1; l < m.nCols; l++)
+                if (min2(m.values[i][l], m.values[i][j]) == m.values[i][l])
+                    is_spec = 0;
+
+            if (is_spec)
+                count++;
+        }
+
+    return count;
+}

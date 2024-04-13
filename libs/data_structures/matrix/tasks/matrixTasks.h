@@ -59,4 +59,8 @@ int getAbsMax(matrix m);
 
 void outputMatrixWithMinNorma(matrix *ms, int nMatrix);
 
+int min2(int a, int b);
+
+int getNSpecialElement2(matrix m);
+
 #endif //LWBOP_MATRIXTASKS_H
