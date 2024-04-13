@@ -39,5 +39,9 @@ int countEqClassesByRowsSum(matrix m);
 
 int getNSpecialElement(matrix m);
 
+position getLeftMin(matrix m);
+
+void swapPenultimateRow(matrix m, int n);
+
 
 #endif //LWBOP_MATRIXTASKS_H

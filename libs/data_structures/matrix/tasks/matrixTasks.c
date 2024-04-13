@@ -186,3 +186,29 @@ int getNSpecialElement(matrix m) {
 
     return unique_elems;
 }
+
+position getLeftMin(matrix m) {
+    position min_left_elem = {0, 0};
+
+    int min_elem = m.values[0][0];
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; j++)
+            if (m.values[i][j] < min_elem) {
+                min_elem = m.values[i][j];
+                min_left_elem.rowIndex = i;
+                min_left_elem.colIndex = j;
+            }
+
+    return min_left_elem;
+}
+
+void swapPenultimateRow(matrix m, int n) {
+    int left_min_col_i = getLeftMin(m).colIndex;
+
+    int *column = (int *) malloc(sizeof(int) * n);
+    for (int i = 0; i < n; i++)
+        column[i] = m.values[i][left_min_col_i];
+
+    for (int i = 0; i < n; i++)
+        m.values[n - 2][i] = column[i];
+}
