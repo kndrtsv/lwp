@@ -43,5 +43,11 @@ position getLeftMin(matrix m);
 
 void swapPenultimateRow(matrix m, int n);
 
+bool isNonDescendingSorted(int *a, int n);
+
+bool hasAllNonDescendingRows(matrix m);
+
+int countNonDescendingRowsMatrices(matrix *ms, int nMatrix);
+
 
 #endif //LWBOP_MATRIXTASKS_H
