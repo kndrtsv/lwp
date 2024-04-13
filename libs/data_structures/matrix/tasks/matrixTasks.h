@@ -37,4 +37,7 @@ int countNUnique(long long *a, int n);
 
 int countEqClassesByRowsSum(matrix m);
 
+int getNSpecialElement(matrix m);
+
+
 #endif //LWBOP_MATRIXTASKS_H
