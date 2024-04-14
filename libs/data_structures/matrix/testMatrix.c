@@ -176,5 +176,5 @@ void testMatrix() {
     test_transposeMatrix();
     test_getMinValuePos();
     test_getMaxValuePos();
-    printf("all test ok");
+    printf("all tests ok");
 }

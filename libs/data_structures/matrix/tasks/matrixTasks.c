@@ -49,9 +49,10 @@ matrix mulMatrices(matrix m1, matrix m2) {
 }
 
 void getSquareOfMatrixIfSymmetric(matrix *m) {
-    if (isSymmetricMatrix(m) && isSquareMatrix(m))
+    if (isSymmetricMatrix(m) && isSquareMatrix(m)) {
+        *m = mulMatrices(*m, *m);
         freeMemMatrix(m);
-        *m = mulMatrices(*m,*m);
+    }
 }
 
 bool isUnique(long long *a, int n) {
@@ -101,6 +102,8 @@ long long findSumOfMaxesOfPseudoDiagonal(matrix m) {
     for (int i = 0; i < m.nRows + m.nCols - 1; i++)
         sum += ms[i];
 
+    free(ms);
+
     return sum;
 }
 
@@ -139,6 +142,8 @@ void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, in
         }
         mc[j] = temp;
     }
+
+    free(mc);
 }
 
 void sortByDistances(matrix m) {
@@ -184,6 +189,8 @@ int getNSpecialElement(matrix m) {
             unique_elems++;
     }
 
+    free(column);
+
     return unique_elems;
 }
 
@@ -211,6 +218,8 @@ void swapPenultimateRow(matrix m, int n) {
 
     for (int i = 0; i < n; i++)
         m.values[n - 2][i] = column[i];
+
+    free(column);
 }
 
 bool isNonDescendingSorted(int *a, int n) {
@@ -243,7 +252,7 @@ int countValues(const int *a, int n, int value) {
     int count = 0;
 
     for (int i = 0; i < n; i++)
-        if (a[i] == count)
+        if (a[i] == value)
             count++;
 
     return count;
@@ -272,12 +281,12 @@ void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix) {
 }
 
 int getAbsMax(matrix m) {
-    int abs_max_elem = m.values[0][0];
+    int abs_max_elem = abs(m.values[0][0]);
 
     for (int i = 0; i < m.nRows; i++)
         for (int j = 0; j < m.nCols; j++)
             if (abs(m.values[i][j]) > abs_max_elem)
-                abs_max_elem = m.values[i][j];
+                abs_max_elem = abs(m.values[i][j]);
 
     return abs_max_elem;
 }

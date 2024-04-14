@@ -22,7 +22,7 @@ matrix *getMemArrayOfMatrices(int nMatrices,
 void freeMemMatrix(matrix *m) {
     for (int i = 0; i < m->nRows; i++)
         free(m->values[i]);
-    free(m);
+    free(m->values);
 }
 
 void freeMemMatrices(matrix *ms, int nMatrices) {
@@ -77,8 +77,8 @@ void swap(int *a, int *b) {
     *b = temp;
 }
 
-int getSum(int *a, int n) {
-    int sum = 0;
+long long getSum(int *a, int n) {
+    long long sum = 0;
     for (int i = 0; i < n; i++)
         sum += a[i];
 
