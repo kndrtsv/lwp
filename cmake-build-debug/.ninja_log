@@ -1,13 +1,11 @@
 # ninja log v5
-8	185	7348189644392204	CMakeFiles/lwbop.dir/main.c.obj	9e268dc6a680bdb
+8	186	7348195750947714	CMakeFiles/lwbop.dir/main.c.obj	9e268dc6a680bdb
 8	290	7336249294271900	CMakeFiles/lwbop.dir/libs/data_structures/vector/voidVector.c.obj	b7077d0e3974bae0
 12	291	7336249294291905	CMakeFiles/lwbop.dir/libs/data_structures/vector/vector.c.obj	b93fdc372e844655
 8	251	7348190734980267	CMakeFiles/lwbop.dir/libs/data_structures/matrix/tasks/testMatrixTasks.c.obj	12b3c1b235085703
-331	603	7348194283741188	lwbop.exe	61082ce267f7526b
+187	484	7348195753867697	lwbop.exe	61082ce267f7526b
 16	437	7338773312369689	CMakeFiles/lwbop.dir/libs/data_structures/vector/testVector.c.obj	a1fbe940cbcbb30c
 7	355	7348139930909430	CMakeFiles/lwbop.dir/libs/data_structures/matrix/matrix.c.obj	3b16241d9d7b4836
 19	372	7342877611895662	CMakeFiles/lwbop.dir/libs/data_structures/matrix/testMatrix.c.obj	dc9a8eae93bb3e0e
-1	223	7347561571441058	build.ninja	e39aa5ef42c8cf6b
+1	223	7350960950732787	build.ninja	e39aa5ef42c8cf6b
 7	330	7348194281066386	CMakeFiles/lwbop.dir/libs/data_structures/matrix/tasks/matrixTasks.c.obj	a47c650856e74a65
-8	186	7348195750947714	CMakeFiles/lwbop.dir/main.c.obj	9e268dc6a680bdb
-187	484	7348195753867697	lwbop.exe	61082ce267f7526b

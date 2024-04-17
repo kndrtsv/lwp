@@ -17,4 +17,6 @@ add_executable(lwbop main.c
         libs/data_structures/matrix/tasks/matrixTasks.h
         libs/data_structures/matrix/tasks/testMatrixTasks.h
         libs/data_structures/matrix/tasks/testMatrixTasks.c
+        libs/string_/string_.h
+        libs/string_/string_.c
 )
