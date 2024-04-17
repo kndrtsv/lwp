@@ -1,3 +1,9 @@
-//
-// Created by user on 18.04.2024.
-//
+#include "string_.h"
+
+size_t strlen_(const char *begin) {
+    char *end = begin;
+    while (*end != '\0')
+        end++;
+
+    return end - begin;
+}
