@@ -9,3 +9,10 @@
 19	372	7342877611895662	CMakeFiles/lwbop.dir/libs/data_structures/matrix/testMatrix.c.obj	dc9a8eae93bb3e0e
 1	223	7350960950732787	build.ninja	e39aa5ef42c8cf6b
 7	330	7348194281066386	CMakeFiles/lwbop.dir/libs/data_structures/matrix/tasks/matrixTasks.c.obj	a47c650856e74a65
+34	2205	7351696217354084	CMakeFiles/lwbop.dir/libs/string_/string_.c.obj	445cdef21a1f1c12
+12	2207	7351696217354084	CMakeFiles/lwbop.dir/main.c.obj	9e268dc6a680bdb
+2207	3281	7351696227993559	lwbop.exe	31b42ece2e63f5a5
+8	176	7351696397931716	CMakeFiles/lwbop.dir/main.c.obj	9e268dc6a680bdb
+177	470	7351696400743179	lwbop.exe	31b42ece2e63f5a5
+11	341	7351696837180903	CMakeFiles/lwbop.dir/main.c.obj	9e268dc6a680bdb
+342	661	7351696840330885	lwbop.exe	31b42ece2e63f5a5

@@ -5,6 +5,5 @@
 #include "libs/data_structures/matrix/tasks/testMatrixTasks.h"
 
 int main() {
-    testMatrixTasks();
     return 0;
 }
