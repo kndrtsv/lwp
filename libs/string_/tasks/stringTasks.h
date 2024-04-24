@@ -4,4 +4,8 @@
 #include "C:\Users\user\CLionProjects\lwbop\libs\string_\string_.h"
 #include <ctype.h>
 
+void removeNonLetters(char *s);
+
+void removeAdjacentEqualLetters(char *s);
+
 #endif //LWBOP_STRINGTASKS_H
