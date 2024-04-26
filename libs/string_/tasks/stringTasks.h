@@ -8,4 +8,6 @@ void removeNonLetters(char *s);
 
 void removeAdjacentEqualLetters(char *s);
 
+void reverseDigitsToStartLettersToEnd(char *s);
+
 #endif //LWBOP_STRINGTASKS_H
