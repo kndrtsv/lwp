@@ -62,7 +62,6 @@ void reverseDigitsToStartLettersToEnd(char *s) {
 
 void letterToStart(WordDescriptor word) {
     char *endStringBuffer = copy(word.begin, word.end,_stringBuffer);
-    printf("%s", endStringBuffer);
     char *recPosition = copyIf(_stringBuffer,endStringBuffer - 1,word.begin, isalpha);
     copyIf(_stringBuffer, endStringBuffer, recPosition, isdigit);
 }
@@ -85,4 +84,22 @@ int getWordReverse(char *rbegin, char *rend, WordDescriptor *word) {
     word->end = findSpace(word->begin);
 
     return 1;
+}
+
+//task 4
+
+void replaceDigitBySpaces(char *s) {
+    char *readPtr = _stringBuffer;
+    char *endStringBuffer = copy(s, s + strlen_(s), _stringBuffer);
+    char *recPtr = s;
+
+    while (readPtr != endStringBuffer) {
+        if (isalpha(*readPtr))
+            *recPtr++ = *readPtr;
+        else
+            for (int i = 0; i < *readPtr - ASCII_DIGIT_CONVERT; i++)
+                *recPtr++ = ' ';
+        readPtr++;
+    }
+    *recPtr = '\0';
 }

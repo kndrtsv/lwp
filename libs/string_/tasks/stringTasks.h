@@ -11,5 +11,7 @@ void removeAdjacentEqualLetters(char *s);
 void reverseDigitsToStartLettersToEnd(char *s);
 
 void lettersToStartDigitsToEnd(char *s);
-int getWordReverse(char *rbegin, char *rend, WordDescriptor *word);
+
+void replaceDigitBySpaces(char *s);
+
 #endif //LWBOP_STRINGTASKS_H
