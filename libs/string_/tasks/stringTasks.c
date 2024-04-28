@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "stringTasks.h"
 
 char _stringBuffer[MAX_STRING_SIZE + 1];
@@ -44,11 +45,8 @@ int getWord(char *beginSearch, WordDescriptor *word) {
 }
 
 void digitToStart(WordDescriptor word) {
-    char *endStringBuffer = copy(word.begin, word.end,
-                                 _stringBuffer);
-    char *recPosition = copyIfReverse(endStringBuffer - 1,
-                                      _stringBuffer - 1,
-                                      word.begin, isdigit);
+    char *endStringBuffer = copy(word.begin, word.end,_stringBuffer);
+    char *recPosition = copyIfReverse(endStringBuffer - 1,_stringBuffer - 1,word.begin, isdigit);
     copyIf(_stringBuffer, endStringBuffer, recPosition, isalpha);
 }
 
@@ -58,4 +56,33 @@ void reverseDigitsToStartLettersToEnd(char *s) {
         digitToStart(word);
         s = word.end;
     }
+}
+
+//additional task
+
+void letterToStart(WordDescriptor word) {
+    char *endStringBuffer = copy(word.begin, word.end,_stringBuffer);
+    printf("%s", endStringBuffer);
+    char *recPosition = copyIf(_stringBuffer,endStringBuffer - 1,word.begin, isalpha);
+    copyIf(_stringBuffer, endStringBuffer, recPosition, isdigit);
+}
+
+void lettersToStartDigitsToEnd(char *s) {
+    WordDescriptor word;
+    while (getWord(s, &word)) {
+        letterToStart(word);
+        s = word.end;
+    }
+}
+
+//additional task
+
+int getWordReverse(char *rbegin, char *rend, WordDescriptor *word) {
+    word->begin = findSpaceReverse(rbegin, rend) + 1;
+    if (*word->begin == '\0')
+        return 0;
+
+    word->end = findSpace(word->begin);
+
+    return 1;
 }
