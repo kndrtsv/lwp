@@ -103,3 +103,47 @@ void replaceDigitBySpaces(char *s) {
     }
     *recPtr = '\0';
 }
+
+//task 5
+
+int strcmpSize(char *lhs, char *rhs, int size) {
+    while (*lhs && *rhs && *lhs == *rhs) {
+        lhs++;
+        rhs++;
+        size--;
+    }
+
+    if (!size)
+        return 0;
+    else {
+        return *lhs - *rhs;;
+    }
+}
+
+void replace(char *source, char *w1, char *w2) {
+    size_t w1Size = strlen_(w1);
+    size_t w2Size = strlen_(w2);
+    WordDescriptor word1 = {w1, w1 + w1Size};
+    WordDescriptor word2 = {w2, w2 + w2Size};
+    char *readPtr, *recPtr;
+
+    if (w1Size >= w2Size) {
+        readPtr = source;
+        recPtr = source;
+    } else {
+        copy(source, getEndOfString(source), _stringBuffer);
+        readPtr = _stringBuffer;
+        recPtr = source;
+    }
+
+    while (*readPtr != '\0') {
+        if (strcmpSize(readPtr, w1, w1Size) == 0) {
+            copy(word2.begin, word2.end, recPtr);
+            readPtr += w1Size;
+            recPtr += w2Size;
+        }
+        else
+            *recPtr++ = *readPtr++;
+    }
+    *recPtr = '\0';
+}
