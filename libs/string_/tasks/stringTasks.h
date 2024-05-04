@@ -18,4 +18,6 @@ void replace(char *source, char *w1, char *w2);
 
 int isOrderedLexicographically(char *s);
 
+void reversePrintWords(char *s);
+
 #endif //LWBOP_STRINGTASKS_H

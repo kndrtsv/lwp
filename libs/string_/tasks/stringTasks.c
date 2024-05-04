@@ -2,6 +2,8 @@
 #include "stringTasks.h"
 
 char _stringBuffer[MAX_STRING_SIZE + 1];
+BagOfWords _bag;
+BagOfWords _bag2;
 
 //task 1
 
@@ -166,4 +168,27 @@ int isOrderedLexicographically(char *s) {
         s = word.end;
     }
     return 1;
+}
+
+//task 7
+
+void getBagOfWords(BagOfWords *bag, char *s) {
+    int i = 0;
+    while (getWord(s, &bag->words[i])) {
+        bag->size = i + 1;
+        s = bag->words[i].end;
+        i++;
+    }
+}
+
+void reversePrintWords(char *s) {
+    getBagOfWords(&_bag, s);
+
+    for (int i = 0; i < _bag.size; i++) {
+        for (int j = 0; j < _bag.words[i].end - _bag.words[i].begin; j++) {
+            char *l = _bag.words[i].begin + j;
+            printf("%c", *l);
+        }
+        printf("\n");
+    }
 }
