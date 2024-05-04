@@ -147,3 +147,23 @@ void replace(char *source, char *w1, char *w2) {
     }
     *recPtr = '\0';
 }
+
+//task 6
+
+int areWordsEqual(WordDescriptor w1, WordDescriptor w2) {
+    strcmpSize(w1.begin, w2.begin, w1.end - w1.begin);
+}
+
+int isOrderedLexicographically(char *s) {
+    WordDescriptor word;
+    WordDescriptor word2;
+
+    while (getWord(s, &word)) {
+        if (getWord(word.end, &word2))
+            if (areWordsEqual(word, word2) && strcmpSize(word.begin, word2.begin, word.end - word.begin))
+                return 0;
+
+        s = word.end;
+    }
+    return 1;
+}

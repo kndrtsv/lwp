@@ -16,4 +16,6 @@ void replaceDigitBySpaces(char *s);
 
 void replace(char *source, char *w1, char *w2);
 
+int isOrderedLexicographically(char *s);
+
 #endif //LWBOP_STRINGTASKS_H
