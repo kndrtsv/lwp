@@ -192,3 +192,31 @@ void reversePrintWords(char *s) {
         printf("\n");
     }
 }
+
+//task 8
+
+int isPalindrome(WordDescriptor word) {
+    while (word.begin != word.end) {
+        if (*word.begin != *word.end)
+            return 0;
+
+        word.begin++;
+        word.end--;
+    }
+    return 1;
+}
+
+int palindromesCounter(char *s) {
+    int count = 0;
+    WordDescriptor word;
+
+    replace(s,","," ");
+
+    while (getWord(s, &word)) {
+        if (isPalindrome(word))
+            count++;
+
+        s = word.end;
+    }
+    return count;
+}

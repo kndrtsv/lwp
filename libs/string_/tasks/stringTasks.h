@@ -20,4 +20,6 @@ int isOrderedLexicographically(char *s);
 
 void reversePrintWords(char *s);
 
+int palindromesCounter(char *s);
+
 #endif //LWBOP_STRINGTASKS_H
