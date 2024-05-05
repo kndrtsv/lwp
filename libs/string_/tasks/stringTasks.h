@@ -22,4 +22,6 @@ void reversePrintWords(char *s);
 
 int palindromesCounter(char *s);
 
+void mixWords(char *s1, char *s2, char *destination);
+
 #endif //LWBOP_STRINGTASKS_H

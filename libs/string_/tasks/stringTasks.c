@@ -220,3 +220,31 @@ int palindromesCounter(char *s) {
     }
     return count;
 }
+
+//task 9
+
+void mixWords(char *s1, char *s2, char *destination) {
+    WordDescriptor word1, word2;
+    int isW1Found, isW2Found;
+    char *beginSearch1 = s1, *beginSearch2 = s2;
+    char *endOfDestination = destination;
+    while ((isW1Found = getWord(beginSearch1, &word1)),
+            (isW2Found = getWord(beginSearch2, &word2)),
+            isW1Found || isW2Found) {
+
+        if (isW1Found) {
+            endOfDestination = copy(word1.begin, word1.end, endOfDestination);
+            *endOfDestination = ' ';
+            endOfDestination++;
+            beginSearch1 = word1.end;
+        }
+
+        if (isW2Found) {
+            endOfDestination = copy(word2.begin, word2.end, endOfDestination);
+            *endOfDestination = ' ';
+            endOfDestination++;
+            beginSearch2 = word2.end;
+        }
+    }
+    *endOfDestination = '\0';
+}
