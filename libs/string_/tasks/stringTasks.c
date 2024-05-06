@@ -79,11 +79,11 @@ void lettersToStartDigitsToEnd(char *s) {
 //additional task
 
 int getWordReverse(char *rbegin, char *rend, WordDescriptor *word) {
-    word->begin = findSpaceReverse(rbegin, rend) + 1;
-    if (*word->begin == '\0')
+    word->end = findNonSpaceReverse(rbegin, rend) + 1;
+    if (word->end == rend)
         return 0;
 
-    word->end = findSpace(word->begin);
+    word->begin = findSpaceReverse(word->end - 1, rend) + 1;
 
     return 1;
 }
@@ -247,4 +247,21 @@ void mixWords(char *s1, char *s2, char *destination) {
         }
     }
     *endOfDestination = '\0';
+}
+
+//task 10
+
+void reverseWords(char *s) {
+    char *rend = _stringBuffer;
+    char *rbegin = copy(s, s + strlen_(s), _stringBuffer);
+    char *recPtr = s;
+    WordDescriptor word;
+
+    while (getWordReverse(rbegin - 1, rend - 1, &word)) {
+        recPtr = copy(word.begin, word.end, recPtr);
+        *recPtr = ' ';
+        recPtr++;
+        rbegin = word.begin - 1;
+    }
+    *recPtr = '\0';
 }
