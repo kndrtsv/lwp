@@ -28,5 +28,7 @@ void reverseWords(char *s);
 
 int getWordReverse(char *rbegin, char *rend, WordDescriptor *word);
 
+void printWordBeforeFirstWordWithA(char *s);
+
 
 #endif //LWBOP_STRINGTASKS_H

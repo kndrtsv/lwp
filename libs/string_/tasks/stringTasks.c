@@ -80,7 +80,7 @@ void lettersToStartDigitsToEnd(char *s) {
 
 int getWordReverse(char *rbegin, char *rend, WordDescriptor *word) {
     word->end = findNonSpaceReverse(rbegin, rend) + 1;
-    if (word->end == rend)
+    if (word->end - 1 == rend)
         return 0;
 
     word->begin = findSpaceReverse(word->end - 1, rend) + 1;
@@ -264,4 +264,50 @@ void reverseWords(char *s) {
         rbegin = word.begin - 1;
     }
     *recPtr = '\0';
+}
+
+//task 11
+
+int isLetterIn(char *begin, char *end, char *letter) {
+    while (begin != end && tolower(*begin) != tolower(*letter))
+        begin++;
+
+    return begin != end;
+}
+
+WordBeforeFirstWordWithAReturnCode getWordBeforeFirstWordWithA(char *s, WordDescriptor *w) {
+    char *begin = s;
+    int isWordInString = isLetterIn(s, s + strlen_(s), "a");
+
+    if (!strlen_(s))
+        return EMPTY_STRING;
+    else if (!isWordInString)
+        return NOT_FOUND_A_WORD_WITH_A;
+
+    while (getWord(begin, w)) {
+        if (isLetterIn(w->begin, w->end, "a")) {
+            int isWordFound = getWordReverse(w->begin - 1, s - 1, w);
+            if (!isWordFound)
+                return FIRST_WORD_WITH_A;
+            else
+                return WORD_FOUND;
+        }
+        begin = w->end;
+    }
+}
+
+void printWordBeforeFirstWordWithA(char *s) {
+    WordDescriptor word;
+    WordBeforeFirstWordWithAReturnCode code = getWordBeforeFirstWordWithA(s, &word);
+
+    if (code == EMPTY_STRING)
+        printf("No words in string");
+    else if (code == NOT_FOUND_A_WORD_WITH_A)
+        printf(("No words with a in string"));
+    else if (code == FIRST_WORD_WITH_A)
+        printf("First word with a");
+    else {
+        for (char *l = word.begin; l != word.end; l++)
+            printf("%c", *l);
+    }
 }
