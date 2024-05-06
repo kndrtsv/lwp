@@ -109,7 +109,7 @@ void replaceDigitBySpaces(char *s) {
 //task 5
 
 int strcmpSize(char *lhs, char *rhs, int size) {
-    while (*lhs && *rhs && *lhs == *rhs) {
+    while (*lhs && *rhs && *lhs == *rhs && size) {
         lhs++;
         rhs++;
         size--;
@@ -310,4 +310,24 @@ void printWordBeforeFirstWordWithA(char *s) {
         for (char *l = word.begin; l != word.end; l++)
             printf("%c", *l);
     }
+}
+
+//task 12
+
+void wordDescriptorToString(WordDescriptor word, char *destination) {
+    char *endOfString = copy(word.begin, word.end, destination);
+    *endOfString = '\0';
+}
+
+WordDescriptor getLastWordFromFirstStringIfInSecondString(char *s1, char *s2) {
+    getBagOfWords(&_bag, s1);
+    getBagOfWords(&_bag2, s2);
+    WordDescriptor word = {NULL, NULL};
+
+    for (int i = _bag.size - 1; i >= 0; i--)
+        for (int j = _bag2.size - 1; j >= 0; j--)
+            if (!strcmpSize(_bag.words[i].begin, _bag2.words[j].begin, _bag.words[i].end - _bag.words[i].begin))
+                return _bag.words[i];
+
+    return word;
 }

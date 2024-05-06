@@ -30,5 +30,7 @@ int getWordReverse(char *rbegin, char *rend, WordDescriptor *word);
 
 void printWordBeforeFirstWordWithA(char *s);
 
+WordDescriptor getLastWordFromFirstStringIfInSecondString(char *s1, char *s2);
+
 
 #endif //LWBOP_STRINGTASKS_H
