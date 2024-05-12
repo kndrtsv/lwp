@@ -331,3 +331,16 @@ WordDescriptor getLastWordFromFirstStringIfInSecondString(char *s1, char *s2) {
 
     return word;
 }
+
+//task 13
+
+int isStringUniq(char *s) {
+    getBagOfWords(&_bag, s);
+
+    for (int i = 0; i < _bag.size; i++)
+        for (int j = i + 1; j < _bag.size; j++)
+            if (strcmpSize(_bag.words[i].begin, _bag.words[j].begin, _bag.words[i].end - _bag.words[i].begin))
+                return 0;
+
+    return 1;
+}

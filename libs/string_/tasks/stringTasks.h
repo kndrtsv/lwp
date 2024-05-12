@@ -32,5 +32,6 @@ void printWordBeforeFirstWordWithA(char *s);
 
 WordDescriptor getLastWordFromFirstStringIfInSecondString(char *s1, char *s2);
 
+int isStringUniq(char *s);
 
 #endif //LWBOP_STRINGTASKS_H
