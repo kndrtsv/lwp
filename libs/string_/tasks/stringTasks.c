@@ -361,3 +361,27 @@ int isWordsWithEqualLettersSet(char *s) {
 
     return isStringUniq(_stringBuffer);
 }
+
+//task 15
+
+void getStringWithoutAllWordsEqualLast(char *s) {
+    WordDescriptor last_word;
+    getWordReverse(s + strlen_(s), s, &last_word);
+
+    char *buffer = copy(s, s + strlen_(s), _stringBuffer);
+    buffer = _stringBuffer;
+    WordDescriptor word;
+    char *write = s;
+
+    while (getWord(buffer, &word)) {
+        if (strcmpSize(word.begin, last_word.begin, last_word.end - last_word.begin - 1) != 0) {
+            write = copy(word.begin, word.end, write);
+            *write = ' ';
+            write++;
+        }
+        buffer = word.end + 1;
+    }
+
+    write--;
+    *write = '\0';
+}

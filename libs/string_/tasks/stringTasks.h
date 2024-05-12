@@ -36,4 +36,6 @@ int isStringUniq(char *s);
 
 int isWordsWithEqualLettersSet(char *s);
 
+void getStringWithoutAllWordsEqualLast(char *s);
+
 #endif //LWBOP_STRINGTASKS_H
