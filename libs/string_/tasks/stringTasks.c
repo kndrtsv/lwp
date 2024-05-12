@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "stringTasks.h"
 
 char _stringBuffer[MAX_STRING_SIZE + 1];
@@ -343,4 +344,20 @@ int isStringUniq(char *s) {
                 return 0;
 
     return 1;
+}
+
+//task 14
+
+int compareChar(const void *a, const void *b) {
+    return (*(char *)a - *(char *)b);
+}
+
+int isWordsWithEqualLettersSet(char *s) {
+    char *endOfString = copy(s, s + strlen_(s), _stringBuffer);
+    getBagOfWords(&_bag, _stringBuffer);
+
+    for (int i = 0; i < _bag.size; i++)
+        qsort(_bag.words[i].begin, _bag.words[i].end - _bag.words[i].begin, sizeof(char), compareChar);
+
+    return isStringUniq(_stringBuffer);
 }
