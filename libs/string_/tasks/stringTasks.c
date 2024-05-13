@@ -197,7 +197,9 @@ void reversePrintWords(char *s) {
 //task 8
 
 int isPalindrome(WordDescriptor word) {
-    while (word.begin != word.end) {
+    word.end--;
+
+    while (word.begin < word.end) {
         if (*word.begin != *word.end)
             return 0;
 
@@ -396,4 +398,25 @@ WordDescriptor findWordBeforeFirstWordInTwoStrings(char *s1, char *s2) {
         for (int j = 0; j < _bag2.size; j++)
             if (!areWordsEqual(_bag.words[i], _bag2.words[j]))
                 return _bag.words[i - 1];
+}
+
+//task 17
+
+void deletePalindromes(char *s) {
+    char *buffer = copy(s, s + strlen_(s), _stringBuffer);
+    buffer = _stringBuffer;
+    WordDescriptor word;
+    char *write = s;
+
+    while (getWord(buffer, &word)) {
+        if (!isPalindrome(word)) {
+            write = copy(word.begin, word.end, write);
+            *write = ' ';
+            write++;
+        }
+        buffer = word.end + 1;
+    }
+
+    write--;
+    *write = '\0';
 }

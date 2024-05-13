@@ -40,4 +40,6 @@ void getStringWithoutAllWordsEqualLast(char *s);
 
 WordDescriptor findWordBeforeFirstWordInTwoStrings(char *s1, char *s2);
 
+void deletePalindromes(char *s);
+
 #endif //LWBOP_STRINGTASKS_H
