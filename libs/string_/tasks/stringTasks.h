@@ -28,7 +28,11 @@ void reverseWords(char *s);
 
 int getWordReverse(char *rbegin, char *rend, WordDescriptor *word);
 
+WordBeforeFirstWordWithAReturnCode getWordBeforeFirstWordWithA(char *s, WordDescriptor *w);
+
 void printWordBeforeFirstWordWithA(char *s);
+
+void wordDescriptorToString(WordDescriptor word, char *destination);
 
 WordDescriptor getLastWordFromFirstStringIfInSecondString(char *s1, char *s2);
 
@@ -45,5 +49,7 @@ void deletePalindromes(char *s);
 void addWordsToSmallString(char *s1, char *s2);
 
 int isEveryWordLetterInString(char *s, char *word);
+
+void assertString(const char *expected, char *got, char const *fileName, char const *funcName, int line);
 
 #endif //LWBOP_STRINGTASKS_H

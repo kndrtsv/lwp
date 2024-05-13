@@ -24,12 +24,12 @@ void removeAdjacentEqualLetters(char *s) {
     char *begin = s;
     char *element = s + 1;
 
-    while (*begin != '\0') {
-        if (*element == *begin) {
-            element++;
+    while (*element != '\0') {
+        if (*element != *begin) {
+            begin++;
+            *begin = *element;
         }
-        begin++;
-        *begin = *element;
+        element++;
     }
     begin++;
     *begin = '\0';
@@ -98,6 +98,10 @@ void replaceDigitBySpaces(char *s) {
 
     while (readPtr != endStringBuffer) {
         if (isalpha(*readPtr))
+
+
+
+
             *recPtr++ = *readPtr;
         else
             for (int i = 0; i < *readPtr - ASCII_DIGIT_CONVERT; i++)
@@ -249,6 +253,7 @@ void mixWords(char *s1, char *s2, char *destination) {
             beginSearch2 = word2.end;
         }
     }
+    endOfDestination--;
     *endOfDestination = '\0';
 }
 
@@ -264,8 +269,9 @@ void reverseWords(char *s) {
         recPtr = copy(word.begin, word.end, recPtr);
         *recPtr = ' ';
         recPtr++;
-        rbegin = word.begin - 1;
+        rbegin = word.begin;
     }
+    recPtr--;
     *recPtr = '\0';
 }
 
@@ -342,7 +348,7 @@ int isStringUniq(char *s) {
 
     for (int i = 0; i < _bag.size; i++)
         for (int j = i + 1; j < _bag.size; j++)
-            if (strcmpSize(_bag.words[i].begin, _bag.words[j].begin, _bag.words[i].end - _bag.words[i].begin))
+            if (!strcmpSize(_bag.words[i].begin, _bag.words[j].begin, _bag.words[i].end - _bag.words[i].begin))
                 return 0;
 
     return 1;
@@ -355,13 +361,12 @@ int compareChar(const void *a, const void *b) {
 }
 
 int isWordsWithEqualLettersSet(char *s) {
-    char *endOfString = copy(s, s + strlen_(s), _stringBuffer);
-    getBagOfWords(&_bag, _stringBuffer);
+    getBagOfWords(&_bag, s);
 
     for (int i = 0; i < _bag.size; i++)
         qsort(_bag.words[i].begin, _bag.words[i].end - _bag.words[i].begin, sizeof(char), compareChar);
 
-    return isStringUniq(_stringBuffer);
+    return !isStringUniq(s);
 }
 
 //task 15
@@ -478,4 +483,16 @@ int isEveryWordLetterInString(char *s, char *word) {
         return 1;
 
     return 0;
+}
+
+//for testing
+
+void assertString(const char *expected, char *got, char const *fileName, char const *funcName, int line) {
+    if (strcmp_(expected, got)) {
+        fprintf(stderr, "File %s\n", fileName);
+        fprintf(stderr, "%s - failed on line %d\n", funcName, line);
+        fprintf(stderr, "Expected: \"%s\"\n", expected);
+        fprintf(stderr, "Got: \"%s\"\n\n", got);
+    } else
+        fprintf(stderr, "%s - OK\n", funcName);
 }
