@@ -420,3 +420,35 @@ void deletePalindromes(char *s) {
     write--;
     *write = '\0';
 }
+
+//task 18
+
+void addWordsToSmallString(char *s1, char *s2) {
+    getBagOfWords(&_bag, s1);
+    getBagOfWords(&_bag2, s2);
+    char *write;
+    int isFirstStringLarger = _bag.size > _bag2.size ? 1 : 0;
+    int difference = abs(_bag.size - _bag2.size);
+
+    if (isFirstStringLarger) {
+        write = _bag2.words[_bag2.size - 1].end;
+        *write = ' ';
+        write++;
+        for (int i = 0; i < difference; i++) {
+            write = copy(_bag.words[_bag2.size + i].begin, _bag.words[_bag2.size + i].end, write);
+            *write = ' ';
+            write++;
+        }
+    }
+    else {
+        write = _bag.words[_bag.size - 1].end;
+        *write = ' ';
+        write++;
+        for (int i = 0; i < difference; i++) {
+            write = copy(_bag2.words[_bag.size + i].begin, _bag2.words[_bag.size + i].end, write);
+            *write = ' ';
+            write++;
+        }
+    }
+    *write = '\0';
+}

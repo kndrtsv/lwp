@@ -42,4 +42,6 @@ WordDescriptor findWordBeforeFirstWordInTwoStrings(char *s1, char *s2);
 
 void deletePalindromes(char *s);
 
+void addWordsToSmallString(char *s1, char *s2);
+
 #endif //LWBOP_STRINGTASKS_H
