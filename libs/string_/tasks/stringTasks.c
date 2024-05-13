@@ -452,3 +452,30 @@ void addWordsToSmallString(char *s1, char *s2) {
     }
     *write = '\0';
 }
+
+//task 19
+
+int isEveryWordLetterInString(char *s, char *word) {
+    int letters[ALPHABET] = {0};
+
+    for (int i = 0; i < strlen_(word); i++) {
+        char elem = word[i];
+        if (isalpha(elem))
+            letters[elem - ASCII_LETTER_CONVERT] = 1;
+    }
+
+    int count = 0;
+
+    for (int i = 0; i < strlen_(s); i++) {
+        char elem = s[i];
+        if (isalpha(elem) && letters[elem - ASCII_LETTER_CONVERT]) {
+            count++;
+            letters[elem - ASCII_LETTER_CONVERT] = 0;
+        }
+    }
+
+    if (count == strlen_(word))
+        return 1;
+
+    return 0;
+}

@@ -44,4 +44,6 @@ void deletePalindromes(char *s);
 
 void addWordsToSmallString(char *s1, char *s2);
 
+int isEveryWordLetterInString(char *s, char *word);
+
 #endif //LWBOP_STRINGTASKS_H
