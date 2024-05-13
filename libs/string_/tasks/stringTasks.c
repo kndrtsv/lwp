@@ -385,3 +385,15 @@ void getStringWithoutAllWordsEqualLast(char *s) {
     write--;
     *write = '\0';
 }
+
+//task 16
+
+WordDescriptor findWordBeforeFirstWordInTwoStrings(char *s1, char *s2) {
+    getBagOfWords(&_bag, s1);
+    getBagOfWords(&_bag2, s2);
+
+    for (int i = 0; i < _bag.size; i++)
+        for (int j = 0; j < _bag2.size; j++)
+            if (!areWordsEqual(_bag.words[i], _bag2.words[j]))
+                return _bag.words[i - 1];
+}

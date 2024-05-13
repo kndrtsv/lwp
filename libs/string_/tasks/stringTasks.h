@@ -38,4 +38,6 @@ int isWordsWithEqualLettersSet(char *s);
 
 void getStringWithoutAllWordsEqualLast(char *s);
 
+WordDescriptor findWordBeforeFirstWordInTwoStrings(char *s1, char *s2);
+
 #endif //LWBOP_STRINGTASKS_H
