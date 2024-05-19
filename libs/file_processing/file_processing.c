@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "file_processing.h"
 #include "../data_structures/matrix/matrix.h"
 
 //task 1
@@ -90,6 +91,22 @@ void writeCalculatedExpression(char *file) {
     }
 
     fprintf(write, " = %d", result);
+
+    fclose(read);
+    fclose(write);
+}
+
+//task 4
+
+void saveRightWords(char *readFile, char *writeFile, char *sequence) {
+    FILE *read = fopen(readFile, "r");
+    FILE *write = fopen(writeFile, "w");
+
+    char word[100];
+
+    while (fscanf(read, "%s", word) != EOF)
+        if (strstr(&word, sequence))
+            fprintf(write, "%s\n", word);
 
     fclose(read);
     fclose(write);
