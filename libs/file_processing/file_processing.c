@@ -37,3 +37,17 @@ void transposeMatrices(char *readFile, char *writeFile) {
     fclose(read);
     fclose(write);
 }
+
+//task 2
+
+void fixedPointNumberToFloating(char *readFile, char *writeFile) {
+    FILE *read = fopen(readFile, "r");
+    FILE *write = fopen(writeFile, "w");
+
+    float x;
+    while (fscanf(read, "%f", &x) != EOF)
+        fprintf(write, "%.2f\n", x);
+
+    fclose(read);
+    fclose(write);
+}
