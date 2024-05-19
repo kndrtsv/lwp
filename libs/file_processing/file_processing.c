@@ -51,3 +51,46 @@ void fixedPointNumberToFloating(char *readFile, char *writeFile) {
     fclose(read);
     fclose(write);
 }
+
+//task 3
+
+int calculate(int n1, int n2, char op) {
+    if (op == '+')
+        return n1 + n2;
+    else if (op == '-')
+        return n1 - n2;
+    else if (op == '*')
+        return n1 * n2;
+    else if (op == '/')
+        return n1 / n2;
+}
+
+void writeCalculatedExpression(char *file) {
+    FILE *read = fopen(file, "r");
+    FILE *write = fopen(file, "a");
+
+    int n1, n2, n3;
+    char op1, op2;
+
+    fscanf(read, "%d %c %d %c %d", &n1, &op1, &n2, &op2, &n3);
+
+    int result = 0;
+
+    if (op1 == '*' || op1 == '/') {
+        result += calculate(n1, n2, op1);
+        result = calculate(result, n3, op2);
+    }
+    else if (op2 == '*' || op2 == '/') {
+        result += calculate(n2, n3, op2);
+        result = calculate(n1, result, op1);
+    }
+    else {
+        result += calculate(n1, n2, op1);
+        result = calculate(result, n3, op2);
+    }
+
+    fprintf(write, " = %d", result);
+
+    fclose(read);
+    fclose(write);
+}

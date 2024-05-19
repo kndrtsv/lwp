@@ -8,4 +8,6 @@ void transposeMatrices(char *readFile, char *writeFile);
 
 void fixedPointNumberToFloating(char *readFile, char *writeFile);
 
+void writeCalculatedExpression(char *file);
+
 #endif //LWBOP_FILE_PROCESSING_H
