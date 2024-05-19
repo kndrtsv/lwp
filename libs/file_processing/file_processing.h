@@ -13,4 +13,6 @@ void writeCalculatedExpression(char *file);
 
 void saveRightWords(char *readFile, char *writeFile, char *sequence);
 
+void convertStringWithBiggestWord(char *readFile, char *writeFile);
+
 #endif //LWBOP_FILE_PROCESSING_H

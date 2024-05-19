@@ -4,6 +4,8 @@
 #include "C:\Users\user\CLionProjects\lwbop\libs\string_\string_.h"
 #include <ctype.h>
 
+int getWord(char *beginSearch, WordDescriptor *word);
+
 void removeNonLetters(char *s);
 
 void removeAdjacentEqualLetters(char *s);

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "file_processing.h"
 #include "../data_structures/matrix/matrix.h"
+#include "../string_/tasks/stringTasks.h"
 
 //task 1
 
@@ -108,6 +109,32 @@ void saveRightWords(char *readFile, char *writeFile, char *sequence) {
         if (strstr(&word, sequence))
             fprintf(write, "%s\n", word);
 
+    fclose(read);
+    fclose(write);
+}
+
+//task 5
+
+void convertStringWithBiggestWord(char *readFile, char *writeFile) {
+    FILE *read = fopen(readFile, "r");
+    FILE *write = fopen(writeFile, "w");
+
+    char string[100];
+    char biggest_word[100];
+    WordDescriptor word;
+
+    while (fgets(string, sizeof(string), read)) {
+        char *begin = string;
+        int word_size = 0;
+        while (getWord(begin, &word)) {
+            if ((word.end - word.begin) > word_size) {
+                wordDescriptorToString(word, biggest_word);
+                word_size = word.end - word.begin;
+            }
+            begin = word.end;
+        }
+        fprintf(write, "%s\n", biggest_word);
+    }
     fclose(read);
     fclose(write);
 }
