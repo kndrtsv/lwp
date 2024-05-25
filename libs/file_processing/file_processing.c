@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <malloc.h>
+#include <math.h>
 #include "file_processing.h"
 #include "../data_structures/matrix/matrix.h"
 #include "../string_/tasks/stringTasks.h"
@@ -135,6 +137,40 @@ void convertStringWithBiggestWord(char *readFile, char *writeFile) {
         }
         fprintf(write, "%s\n", biggest_word);
     }
+    fclose(read);
+    fclose(write);
+}
+
+//task 6
+
+typedef struct Polynomial {
+    int pow;
+    int coef;
+} Polynomial;
+
+void removePolynomialsWithRootX(char *readFile, char *writeFile, int x) {
+    FILE *read = fopen(readFile, "rb");
+    FILE *write = fopen(writeFile, "wb");
+
+    while (!feof(read)) {
+        int terms;
+        if (fread(&terms, sizeof(int), 1, read) != 1)
+            break;
+
+        Polynomial *polynomials = (Polynomial *) malloc(terms * sizeof(Polynomial));
+        fread(polynomials, sizeof(Polynomial), terms, read);
+
+        int result = 0;
+        for (int i = 0; i < terms; ++i) {
+            result += polynomials[i].coef * pow(x, polynomials[i].pow);
+        }
+
+        if (result) {
+            fwrite(&terms, sizeof(int), 1, write);
+            fwrite(polynomials, sizeof(Polynomial), terms, write);
+        }
+    }
+
     fclose(read);
     fclose(write);
 }
