@@ -234,3 +234,32 @@ void transposeMatrixIfNotSym(char *readFile, char *writeFile) {
     fclose(read);
     fclose(write);
 }
+
+//task 9
+
+typedef struct Athlete {
+    char full_name[MAX_STRING_SIZE];
+    int best_result;
+} Athlete;
+
+int athletesCompare(const void *a, const void *b) {
+    Athlete* first = (Athlete*) a;
+    Athlete* second = (Athlete*) b;
+
+    return second->best_result - first->best_result;
+}
+
+void formBestTeam(char *file, int athletes_n) {
+    FILE *read = fopen(file, "rb");
+    Athlete *athletes[athletes_n];
+
+    fread(*athletes, sizeof(Athlete), athletes_n, read);
+    fclose(read);
+
+    qsort(athletes, athletes_n, sizeof(Athlete), athletesCompare);
+
+    FILE *write = fopen(file, "wb");
+
+    fwrite(athletes, sizeof(Athlete), athletes_n, write);
+    fclose(write);
+}

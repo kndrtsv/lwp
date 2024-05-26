@@ -17,4 +17,6 @@ void convertStringWithBiggestWord(char *readFile, char *writeFile);
 
 void transposeMatrixIfNotSym(char *readFile, char *writeFile);
 
+void formBestTeam(char *file, int athletes_n);
+
 #endif //LWBOP_FILE_PROCESSING_H
