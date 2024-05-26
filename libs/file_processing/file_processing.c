@@ -174,3 +174,40 @@ void removePolynomialsWithRootX(char *readFile, char *writeFile, int x) {
     fclose(read);
     fclose(write);
 }
+
+//task 7
+
+void sortFirstPosThenNeg(char *file) {
+    FILE *read = fopen(file, "rb");
+
+    fseek(read, 0, SEEK_END);
+    int size = ftell(read);
+    fseek(read, 0, SEEK_SET);
+    int num_amount =  size / sizeof(int);
+
+    int numbers[num_amount];
+
+    fread(numbers, sizeof(int), num_amount, read);
+    fclose(read);
+
+    int positive[num_amount / 2];
+    int negative[num_amount / 2];
+    int pos_i = 0;
+    int neg_i = 0;
+
+    for (int i = 0; i < num_amount; i++) {
+        if (numbers[i] > 0) {
+            positive[pos_i] = numbers[i];
+            pos_i++;
+        }
+        else {
+            negative[neg_i] = numbers[i];
+            neg_i++;
+        }
+    }
+
+    FILE *write = fopen(file, "wb");
+    fwrite(positive, sizeof(int), pos_i, write);
+    fwrite(negative, sizeof(int), neg_i, write);
+    fclose(write);
+}
