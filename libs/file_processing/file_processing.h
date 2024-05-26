@@ -19,4 +19,6 @@ void transposeMatrixIfNotSym(char *readFile, char *writeFile);
 
 void formBestTeam(char *file, int athletes_n);
 
+void updateProductsFile(char *fileF, char *fileG);
+
 #endif //LWBOP_FILE_PROCESSING_H

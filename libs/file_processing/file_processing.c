@@ -263,3 +263,56 @@ void formBestTeam(char *file, int athletes_n) {
     fwrite(athletes, sizeof(Athlete), athletes_n, write);
     fclose(write);
 }
+
+//task 10
+
+typedef struct Product {
+    char name[MAX_WORD_SIZE];
+    int unit_price;
+    int total_price;
+    int amount;
+} Product;
+
+typedef struct Order {
+    char name[MAX_WORD_SIZE];
+    int amount;
+} Order;
+
+void updateProductsFile(char *fileF, char *fileG) {
+    FILE *read_f = fopen(fileF, "rb");
+    FILE *read_g = fopen(fileG, "rb");
+
+    fseek(read_f, 0, SEEK_END);
+    long f_n = ftell(read_f);
+    fseek(read_f, 0, SEEK_SET);
+    Product *products = malloc(f_n);
+    fread(products, f_n, 1, read_f);
+    int products_n = f_n / sizeof(Product);
+
+    fseek(read_g, 0, SEEK_END);
+    long g_n = ftell(read_g);
+    fseek(read_g, 0, SEEK_SET);
+    Order *orders = malloc(g_n);
+    fread(orders, g_n, 1, read_g);
+    int orders_n = g_n / sizeof(Order);
+
+    fclose(read_f);
+    fclose(read_g);
+
+    for (int i = 0; i < orders_n; i++) {
+        for (int j = 0; j < products_n; j++) {
+            if (strcmp(orders[i].name, products[j].name) == 0) {
+                products[j].amount -= orders[i].amount;
+                if (products[j].amount < 0) {
+                    products[j].amount = 0;
+                }
+                products[j].total_price = products[j].amount * products[j].unit_price;
+                break;
+            }
+        }
+    }
+
+    FILE *write_f = fopen(fileF, "wb");
+    fwrite(products, sizeof(Product), products_n, write_f);
+    fclose(write_f);
+}
