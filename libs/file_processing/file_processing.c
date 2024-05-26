@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <math.h>
+#include <assert.h>
 #include "file_processing.h"
 #include "../data_structures/matrix/matrix.h"
 #include "../string_/tasks/stringTasks.h"
@@ -209,5 +210,27 @@ void sortFirstPosThenNeg(char *file) {
     FILE *write = fopen(file, "wb");
     fwrite(positive, sizeof(int), pos_i, write);
     fwrite(negative, sizeof(int), neg_i, write);
+    fclose(write);
+}
+
+//task 8
+
+void transposeMatrixIfNotSym(char *readFile, char *writeFile) {
+    FILE *read = fopen(readFile, "rb");
+    FILE *write = fopen(writeFile, "wb");
+
+    int n;
+    fread(&n, sizeof(int), 1, read);
+
+    matrix m = getMemMatrix(n, n);
+
+    while (fread(&m, sizeof(int), n * n, read) == n * n) {
+        if (!isSymmetricMatrix(&m))
+            transposeMatrix(&m);
+
+        fwrite(&m, sizeof (int), n * n, write);
+    }
+
+    fclose(read);
     fclose(write);
 }
