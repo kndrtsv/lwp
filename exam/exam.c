@@ -26,7 +26,7 @@ int main() {
     char buffer[1024];
 
     while (fgets(buffer, sizeof(buffer), stdin)) {
-        if (strlen(buffer) == 0) {
+        if (strlen(buffer) == 1) {
             printf("Empty line\n");
             continue;
         }
